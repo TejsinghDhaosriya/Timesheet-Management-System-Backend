@@ -37,7 +37,8 @@ namespace TimeSheetManagementSystemBackend.Controllers
         public IActionResult AddProject(Project project)
         {
             var createdProject = _projectRepository.AddProject(project);
-            return Created(String.Format(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + project.id), project);
+            //return Created(String.Format(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + project.id), project);
+            return Ok(createdProject);
         }
 
         [HttpDelete]
@@ -48,8 +49,7 @@ namespace TimeSheetManagementSystemBackend.Controllers
             if (project != null)
             {
                 _projectRepository.DeleteProject(project);
-                return Ok("Project record is deactivate sucessfully " +
-                    "");
+                return Ok("Project record is deactivate sucessfully. ");
             }
             return NotFound($"Project with Id {id} was not found.");
         }
@@ -63,7 +63,7 @@ namespace TimeSheetManagementSystemBackend.Controllers
             {
                 project.id = id;
                 _projectRepository.EditProject(project);
-                return Ok();
+                return Ok("Project record is updated sucessfully. ");
             }
             return NotFound($"Project with Id {project.id} was not found.");
         }
