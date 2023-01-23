@@ -1,0 +1,25 @@
+version: '3.4'
+
+networks:
+ backend:
+
+services:
+  apigateway:
+    container_name: api-gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports: 
+       - 8001:80
+    networks:
+        - backend
+  timesheetservice:
+    container_name: timesheet-service
+    image: ${DOCKER_REGISTRY-}timesheetservice
+    build:
+      context: .
+      dockerfile: TimesheetService/Dockerfile
+    networks:
+     - backend
+
