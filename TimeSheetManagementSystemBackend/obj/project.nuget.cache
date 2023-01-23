@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lqra96AWfaSdOORWUb154di4Bf/4HFVFV8dtCWkmhSWep2hl4ARdyCYiJhoJJLQB55kUmHWwqtWFB8JtUqefaQ==",
+  "dgSpecHash": "s9TqQNGd7Lncs1Rv60aB6qsa26WYxogXJC/qyNboX364M/sU3W4MTyu5KobM6JK6jlbFcjI/rlwiWVzPl1z29A==",
   "success": true,
   "projectFilePath": "D:\\Augmento Labs\\TimeSheetManagementSystem-Backend\\Timesheet-Management-System-Backend\\TimeSheetManagementSystemBackend\\TimeSheetManagementSystemBackend.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,8 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.1\\npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

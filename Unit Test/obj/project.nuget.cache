@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "H4IsO1ndPjr0fbUY/xAomObBj/J4BM06yTNSj3h0JaNi9WDLQ8EFNTPMpH9HcJOxJdh/8KL08JQYqettyic/SA==",
+  "dgSpecHash": "U+54tmDAVrh7n3L8DF7KYWUCaH56vEH4IMLDBTtirDePM63/l0GJGUHLugdyoBK+kqJAj9Km6dOwnvGVxFEm3g==",
   "success": true,
   "projectFilePath": "D:\\Augmento Labs\\TimeSheetManagementSystem-Backend\\Timesheet-Management-System-Backend\\Unit Test\\Unit Test.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,8 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.1\\npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

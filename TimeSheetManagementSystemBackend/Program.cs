@@ -11,9 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetConnectionString("ProjectDbConnection");
+// Service to connect with postgresSql
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<ProjectDbContext>(opt =>
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("ProjectDbConnection")));
+
+// Service to connect with sql
+
+/*var connectionString = builder.Configuration.GetConnectionString("ProjectDbConnection");
 builder.Services.AddDbContext<ProjectDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));*/
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 var app = builder.Build();
 

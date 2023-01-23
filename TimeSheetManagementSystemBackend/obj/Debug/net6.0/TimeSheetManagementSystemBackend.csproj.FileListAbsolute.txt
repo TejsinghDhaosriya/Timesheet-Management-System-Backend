@@ -80,3 +80,5 @@ D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-B
 D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\TimeSheetManagementSystemBackend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\TimeSheetManagementSystemBackend\bin\Debug\net6.0\System.Text.Json.dll
 D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\TimeSheetManagementSystemBackend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\TimeSheetManagementSystemBackend\bin\Debug\net6.0\Npgsql.dll
+D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\TimeSheetManagementSystemBackend\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

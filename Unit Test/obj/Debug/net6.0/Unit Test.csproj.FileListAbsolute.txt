@@ -158,3 +158,5 @@ D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-B
 D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\Unit Test\obj\Debug\net6.0\Unit Test.pdb
 D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\Unit Test\obj\Debug\net6.0\Unit Test.genruntimeconfig.cache
 D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\Unit Test\obj\Debug\net6.0\ref\Unit Test.dll
+D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\Unit Test\bin\Debug\net6.0\Npgsql.dll
+D:\Augmento Labs\TimeSheetManagementSystem-Backend\Timesheet-Management-System-Backend\Unit Test\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
