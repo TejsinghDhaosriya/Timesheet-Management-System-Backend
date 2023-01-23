@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{F9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{580FED6A-1EAC-4937-937D-424E3D5C9FB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{8AD4D146-D05C-4BBB-BEB7-1712FBA46C76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{8AD4D146-D05C-4BBB-BEB7-1712FBA46C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetService", "TimesheetService\TimesheetService.csproj", "{077294CB-1F88-486E-9D34-7A26B0CF5297}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetService", "src\services\TimesheetService\TimesheetService.csproj", "{077294CB-1F88-486E-9D34-7A26B0CF5297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetServiceTest", "TimesheetServiceTest\TimesheetServiceTest.csproj", "{D85F19FF-8C03-4CE2-92A8-BF94B98BAE19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetServiceTest", "test\services\TimesheetServiceTest\TimesheetServiceTest.csproj", "{D85F19FF-8C03-4CE2-92A8-BF94B98BAE19}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C4144F82-3004-4602-A712-1B458927AD9E}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose.dcproj", "{C4144F82-3004-4602-A712-1B458927AD9E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{73BEBEE4-FEF9-472D-B63D-7D9FA921CA66}"
 EndProject
