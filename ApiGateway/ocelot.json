@@ -1,0 +1,33 @@
+{
+  "Routes": [
+ 
+    // Project Web API
+    {
+      "UpstreamPathTemplate": "/api/v1/project",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timesheetservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/v1/project"
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/project/{projectId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timesheetservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/v1/project/{projectId}"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8001"
+  }
+}
