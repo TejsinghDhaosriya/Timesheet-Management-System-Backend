@@ -9,7 +9,7 @@ services:
     image: ${DOCKER_REGISTRY-}apigateway
     build:
       context: .
-      dockerfile: ../src/ApiGateway/Dockerfile
+      dockerfile: ../src/main/ApiGateway/Dockerfile
     ports: 
        - 8001:80
     networks:
@@ -19,7 +19,7 @@ services:
     image: ${DOCKER_REGISTRY-}timesheetservice
     build:
       context: .
-      dockerfile: ../src/services/TimesheetService/Dockerfile
+      dockerfile: ../src/main/Services/TimesheetService/Dockerfile
     networks:
      - backend
   postgres:
