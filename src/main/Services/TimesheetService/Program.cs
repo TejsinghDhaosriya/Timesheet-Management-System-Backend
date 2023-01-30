@@ -29,6 +29,7 @@ builder.Services.AddScoped<IApprovalService, ApprovalService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

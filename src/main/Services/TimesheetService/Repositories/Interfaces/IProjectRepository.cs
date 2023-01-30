@@ -1,4 +1,5 @@
-﻿using TimesheetService.Models;
+﻿using TimesheetService.DTOs.Request;
+using TimesheetService.Models;
 
 namespace TimesheetService.Repository
 {
@@ -8,6 +9,6 @@ namespace TimesheetService.Repository
         List<Project> GetProjects();
         Project? GetProject(long id);
         void DeleteProject(Project project);
-        Project? EditProject(Project project);
+        Project? EditProject(long id, ProjectEditInputs project);
     }
 }

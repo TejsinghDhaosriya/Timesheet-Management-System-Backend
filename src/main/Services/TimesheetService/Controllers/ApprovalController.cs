@@ -58,11 +58,11 @@ namespace TimesheetService.Controllers
             var currentApproval = _approvalService.GetApproval(id);
             if (currentApproval != null)
             {
-                approval.id = id;
+                approval.Id = id;
                 _approvalService.EditApproval(approval);
                 return Ok("Approval record is updated sucessfully. ");
             }
-            return NotFound($"Approval with Id {approval.id} was not found.");
+            return NotFound($"Approval with Id {approval.Id} was not found.");
         }
     }
 }

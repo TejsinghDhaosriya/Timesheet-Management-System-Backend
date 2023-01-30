@@ -1,4 +1,5 @@
 ﻿
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Repository;
 using TimesheetService.Services.Interfaces;
@@ -23,9 +24,9 @@ namespace TimesheetService.Services.Implementations
             _projectRepository.DeleteProject(project);
         }
 
-        public Project? EditProject(Project project)
+        public Project? EditProject(long id, ProjectEditInputs project)
         {
-            return _projectRepository.EditProject(project);
+            return _projectRepository.EditProject(id, project);
         }
 
 

@@ -1,4 +1,5 @@
-﻿using TimesheetService.Models;
+﻿using TimesheetService.DTOs.Request;
+using TimesheetService.Models;
 using TimesheetService.Repositories.Interfaces;
 using TimesheetService.Services.Interfaces;
 
@@ -22,9 +23,9 @@ namespace TimesheetService.Services.Implementations
             _timeSheetRepository.DeleteTimeSheet(timeSheet);
         }
 
-        public TimeSheet? EditTimeSheet(TimeSheet timeSheet)
+        public TimeSheet? EditTimeSheet(long id, TimesheetEditInputs timeSheet)
         {
-            return _timeSheetRepository.EditTimeSheet(timeSheet);
+            return _timeSheetRepository.EditTimeSheet(id, timeSheet);
         }
 
 

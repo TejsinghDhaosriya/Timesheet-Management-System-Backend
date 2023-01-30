@@ -1,4 +1,5 @@
 ﻿using TimesheetService.DBContext;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Repositories.Interfaces;
 
@@ -15,6 +16,8 @@ namespace TimesheetService.Repositories.Implementations
 
         public TimeSheet AddTimeSheet(TimeSheet timeSheet)
         {
+            timeSheet.CreatedAt = DateTime.UtcNow;
+            timeSheet.ModifiedAt = DateTime.UtcNow;
             _timeSheetContext.TimeSheets.Add(timeSheet);
             _timeSheetContext.SaveChanges();
             return timeSheet;
@@ -26,15 +29,21 @@ namespace TimesheetService.Repositories.Implementations
             _timeSheetContext.SaveChanges();
         }
 
-        public TimeSheet? EditTimeSheet(TimeSheet timeSheet)
+        public TimeSheet? EditTimeSheet(long id, TimesheetEditInputs timeSheet)
         {
-            var currentsheet = _timeSheetContext.TimeSheets.Find(timeSheet.id);
+            var currentsheet = _timeSheetContext.TimeSheets.Find(id);
             if (currentsheet != null)
             {
-                currentsheet.description = timeSheet.description;
-                currentsheet.date = timeSheet.date;
-                currentsheet.total_hours = timeSheet.total_hours;
-                currentsheet.overtime_hours = timeSheet.overtime_hours;
+                if (timeSheet.Description != null)
+                    currentsheet.Description = timeSheet.Description;
+                if(timeSheet.Date != null)
+                    currentsheet.Date = (DateTime)timeSheet.Date;
+                if(timeSheet.TotalHours != null)
+                    currentsheet.TotalHours = (int)timeSheet.TotalHours;
+                if(timeSheet.OvertimeHours != null)
+                    currentsheet.OvertimeHours = timeSheet.OvertimeHours;
+
+                currentsheet.ModifiedAt = DateTime.UtcNow;
                 _timeSheetContext.Update(currentsheet);
                 _timeSheetContext.SaveChanges();
                 return currentsheet;

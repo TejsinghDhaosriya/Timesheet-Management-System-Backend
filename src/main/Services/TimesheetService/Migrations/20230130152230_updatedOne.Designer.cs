@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TimesheetService.DBContext;
@@ -11,9 +12,11 @@ using TimesheetService.DBContext;
 namespace TimesheetService.Migrations
 {
     [DbContext(typeof(TimeSheetDbContext))]
-    partial class TimeSheetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230130152230_updatedOne")]
+    partial class updatedOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,11 +139,11 @@ namespace TimesheetService.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
-                    b.Property<long?>("CreatedBy")
+                    b.Property<long>("CreatedBy")
                         .HasColumnType("bigint")
                         .HasColumnName("created_by");
 
@@ -153,7 +156,7 @@ namespace TimesheetService.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_at");
 
@@ -161,7 +164,7 @@ namespace TimesheetService.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("organization_id");
 
-                    b.Property<int?>("OvertimeHours")
+                    b.Property<int>("OvertimeHours")
                         .HasColumnType("integer")
                         .HasColumnName("overtime_hours");
 

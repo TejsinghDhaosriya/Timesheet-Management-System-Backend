@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Services.Interfaces;
 
@@ -53,16 +54,15 @@ namespace TimesheetService.Controllers
 
         [HttpPatch]
         [Route("{id}")]
-        public IActionResult EditTimeSheet(long id, TimeSheet timeSheet)
+        public IActionResult EditTimeSheet(long id, TimesheetEditInputs timeSheet)
         {
             var currentsheet = _timeSheetService.GetTimeSheet(id);
             if (currentsheet != null)
             {
-                timeSheet.id = id;
-                _timeSheetService.EditTimeSheet(timeSheet);
+                _timeSheetService.EditTimeSheet(id, timeSheet);
                 return Ok("TimeSheet record is updated sucessfully. ");
             }
-            return NotFound($"TimeSheet with Id {timeSheet.id} was not found.");
+            return NotFound($"TimeSheet with Id {id} was not found.");
         }
     }
 }

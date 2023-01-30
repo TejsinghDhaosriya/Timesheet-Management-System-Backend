@@ -1,4 +1,5 @@
 ﻿using TimesheetService.DBContext;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 
 namespace TimesheetService.Repository
@@ -13,6 +14,9 @@ namespace TimesheetService.Repository
 
         public Project AddProject(Project project)
         {
+            project.CreatedAt = DateTime.UtcNow;
+            project.ModifiedAt = DateTime.UtcNow;
+            project.IsActive = true;
             _projectContext.Projects.Add(project);
             _projectContext.SaveChanges();
             return project;
@@ -20,29 +24,38 @@ namespace TimesheetService.Repository
 
         public void DeleteProject(Project project)
         {
-            var currentProject = _projectContext.Projects.Find(project.id);
-            currentProject.is_active = false;
-            _projectContext.Update(currentProject);
-            _projectContext.SaveChanges();
-        }
-
-        public Project? EditProject(Project project)
-        {
-            var currentProject = _projectContext.Projects.Find(project.id);
+            var currentProject = _projectContext.Projects.Find(project.Id);
             if (currentProject != null)
             {
-                currentProject.name = project.name;
-                currentProject.description = project.description;
-                currentProject.start_date = project.start_date;
-                currentProject.end_date = project.end_date;
-                currentProject.total_time_spent = project.total_time_spent;
-                currentProject.status = project.status;
-                currentProject.manager_id = project.manager_id;
-                currentProject.organization_id = project.organization_id;
-                currentProject.is_active = project.is_active;
+                currentProject.IsActive = false;
                 _projectContext.Update(currentProject);
                 _projectContext.SaveChanges();
-                return currentProject;
+            }
+        }
+
+        public Project? EditProject(long id, ProjectEditInputs project)
+        {
+            var currentProject = _projectContext.Projects.Find(id);
+            if (currentProject != null)
+            {
+                if (project.Name != null)
+                    currentProject.Name = project.Name;
+                if(project.Description != null)
+                    currentProject.Description = project.Description;
+                if(project.StartDate != null)
+                    currentProject.StartDate = (DateTime)project.StartDate;
+                if(project.EndDate != null)
+                    currentProject.EndDate = project.EndDate;
+                if(project.Status != null)
+                    currentProject.Status = (Process_Statuses)project.Status;
+                if(project.ManagerId != null)
+                    currentProject.ManagerId = (long)project.ManagerId;
+
+                currentProject.ModifiedAt = DateTime.UtcNow;
+                _projectContext.Update(currentProject);
+                _projectContext.SaveChanges();
+                var updatedProject = _projectContext.Projects.Find(id);
+                return updatedProject;
             }
             return null;
         }

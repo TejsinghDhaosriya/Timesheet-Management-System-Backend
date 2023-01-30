@@ -1,6 +1,7 @@
 ﻿using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using TimesheetService.Controllers;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Services.Interfaces;
 
@@ -67,12 +68,11 @@ namespace TimesheetServiceTest.Controller
         {
             Project project = new Project()
             {
-                description = "this is demo description",
-                name = "demo",
-                manager_id = 100,
-                organization_id = 1001,
-                is_active = true,
-                status = Process_Statuses.pending
+                Description = "this is demo description",
+                Name = "demo",
+                ManagerId = 100,
+                OrganizationId = 1001,
+                Status = Process_Statuses.pending
             };
             var fakeProjectService = A.Fake<IProjectService>();
             A.CallTo(() => fakeProjectService.AddProject(project)).Returns(project);
@@ -132,11 +132,12 @@ namespace TimesheetServiceTest.Controller
         [Fact]
         public void ShouldReturnUpdateProjectSuccessResponse()
         {
-            Project project = new Project();
+            // Project project = new Project();
+            ProjectEditInputs project = new ProjectEditInputs();
             long id = 1001;
             var fakeProjectService = A.Fake<IProjectService>();
-            A.CallTo(() => fakeProjectService.GetProject(id)).Returns(project);
-            A.CallTo(() => fakeProjectService.EditProject(project)).Returns(project);
+            A.CallTo(() => fakeProjectService.GetProject(id)).Returns(new Project());
+            A.CallTo(() => fakeProjectService.EditProject(id, project)).Returns(new Project());
 
             var ProjectServ = new ProjectController(fakeProjectService);
 
@@ -153,7 +154,7 @@ namespace TimesheetServiceTest.Controller
         [Fact]
         public void ShouldReturnUpdateProjectFailedResponse()
         {
-            Project project = new Project();
+            ProjectEditInputs project = new ProjectEditInputs();
             long id = 0000;
             var fakeProjectService = A.Fake<IProjectService>();
             A.CallTo(() => fakeProjectService.GetProject(id)).Returns(null);

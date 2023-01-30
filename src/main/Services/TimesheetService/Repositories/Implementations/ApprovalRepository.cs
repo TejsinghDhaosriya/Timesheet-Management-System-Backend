@@ -14,6 +14,8 @@ namespace TimesheetService.Repositories.Implementations
 
         public Approval AddApproval(Approval approval)
         {
+            approval.CreatedAt = DateTime.Now;
+            approval.ModifiedAt = DateTime.Now;
             _approvalContext.Approvals.Add(approval);
             _approvalContext.SaveChanges();
             return approval;
@@ -27,15 +29,16 @@ namespace TimesheetService.Repositories.Implementations
 
         public Approval? EditApproval(Approval approval)
         {
-            var currentApproval = _approvalContext.Approvals.Find(approval.id);
+            var currentApproval = _approvalContext.Approvals.Find(approval.Id);
             if (currentApproval != null)
             {
-                currentApproval.timesheet_id = approval.timesheet_id;
-                currentApproval.status = approval.status;
-                currentApproval.approval_date = approval.approval_date;
-                currentApproval.manager_id = approval.manager_id;
-                currentApproval.reason_for_rejection = approval.reason_for_rejection;
-                currentApproval.organization_id = approval.organization_id;
+                if (approval.Status != null)
+                    currentApproval.Status = approval.Status;
+                if (approval.ApprovalDate != null)
+                    currentApproval.ApprovalDate = approval.ApprovalDate;
+                if(approval.ReasonForRejection != null)
+                    currentApproval.ReasonForRejection = approval.ReasonForRejection;
+
                 _approvalContext.Update(currentApproval);
                 _approvalContext.SaveChanges();
                 return currentApproval;

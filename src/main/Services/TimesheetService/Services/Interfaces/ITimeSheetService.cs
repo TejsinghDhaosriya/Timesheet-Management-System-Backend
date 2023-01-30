@@ -1,4 +1,5 @@
-﻿using TimesheetService.Models;
+﻿using TimesheetService.DTOs.Request;
+using TimesheetService.Models;
 
 namespace TimesheetService.Services.Interfaces
 {
@@ -8,6 +9,6 @@ namespace TimesheetService.Services.Interfaces
         List<TimeSheet> GetTimeSheets();
         TimeSheet? GetTimeSheet(long id);
         void DeleteTimeSheet(TimeSheet timeSheet);
-        TimeSheet? EditTimeSheet(TimeSheet timeSheet);
+        TimeSheet? EditTimeSheet(long id, TimesheetEditInputs timeSheet);
     }
 }

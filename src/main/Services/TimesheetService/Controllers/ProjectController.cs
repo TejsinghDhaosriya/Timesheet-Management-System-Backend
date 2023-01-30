@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Services.Interfaces;
 
@@ -54,16 +55,15 @@ namespace TimesheetService.Controllers
 
         [HttpPatch]
         [Route("{id}")]
-        public IActionResult EditProject(long id, Project project)
+        public IActionResult EditProject(long id, ProjectEditInputs project)
         {
             var currentProject = _projectService.GetProject(id);
             if (currentProject != null)
             {
-                project.id = id;
-                _projectService.EditProject(project);
+                _projectService.EditProject(id,project);
                 return Ok("Project record is updated sucessfully. ");
             }
-            return NotFound($"Project with Id {project.id} was not found.");
+            return NotFound($"Project with Id {id} was not found.");
         }
     }
 }

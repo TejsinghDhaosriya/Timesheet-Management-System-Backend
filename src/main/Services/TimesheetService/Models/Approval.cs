@@ -6,11 +6,14 @@ namespace TimesheetService.Models
     public class Approval
     {
         [Key]
-        public long id { get; set; }
+        [Column("id")]
+        public long Id { get; set; }
 
         [Column("timesheet_id")]
-        public TimeSheet TimesheetId { get; set; }
-        public Approval_status status { get; set; }
+        public TimeSheet TimeSheet { get; set; }
+
+        [Column("status")]
+        public Approval_status Status { get; set; }
 
         [Column("reason_for_rejection")]
         public string? ReasonForRejection { get; set; }
@@ -23,6 +26,12 @@ namespace TimesheetService.Models
 
         [Column(" organization_id")]
         public long OrganizationId { get; set; }
+
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [Column("modified_at")]
+        public DateTime ModifiedAt { get; set; }
     }
 
     public enum Approval_status

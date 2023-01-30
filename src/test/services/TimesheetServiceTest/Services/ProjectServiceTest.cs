@@ -1,4 +1,5 @@
 ﻿using FakeItEasy;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Repository;
 using TimesheetService.Services.Implementations;
@@ -28,12 +29,11 @@ namespace TimesheetServiceTest.Services
         {
             Project project = new Project()
             {
-                description = "this is demo description",
-                name = "demo",
-                manager_id = 100,
-                organization_id = 1001,
-                is_active = true,
-                status = Process_Statuses.pending
+                Description = "this is demo description",
+                Name = "demo",
+                ManagerId = 100,
+                OrganizationId = 1001,
+                Status = Process_Statuses.pending
             };
             long id = 1001;
             var fakeProjectRepository = A.Fake<IProjectRepository>();
@@ -52,12 +52,11 @@ namespace TimesheetServiceTest.Services
         {
             Project project = new Project()
             {
-                description = "this is demo description",
-                name = "demo",
-                manager_id = 100,
-                organization_id = 1001,
-                is_active = true,
-                status = Process_Statuses.pending
+                Description = "this is demo description",
+                Name = "demo",
+                ManagerId = 100,
+                OrganizationId = 1001,
+                Status = Process_Statuses.pending
             };
             var fakeProjectRepository = A.Fake<IProjectRepository>();
             A.CallTo(() => fakeProjectRepository.AddProject(project)).Returns(project);
@@ -87,24 +86,21 @@ namespace TimesheetServiceTest.Services
         [Fact]
         public void ShouldReturnUpdateProject()
         {
-            Project project = new Project()
+            ProjectEditInputs project = new ProjectEditInputs()
             {
-                description = "this is demo description",
-                name = "demo",
-                manager_id = 100,
-                organization_id = 1001,
-                is_active = true,
-                status = Process_Statuses.pending
+                Description = "this is demo description",
+                Name = "demo",
+                ManagerId = 100,
+                Status = Process_Statuses.pending
             };
             long id = 1001;
             var fakeProjectRepository = A.Fake<IProjectRepository>();
-            A.CallTo(() => fakeProjectRepository.EditProject(project)).Returns(project);
+            A.CallTo(() => fakeProjectRepository.EditProject(id, project)).Returns(new Project());
 
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
-            var result = ProjectRepo.EditProject(project);
+            var result = ProjectRepo.EditProject(id, project);
             Assert.NotNull(result);
-            Assert.Equal(result, project);
 
 
         }

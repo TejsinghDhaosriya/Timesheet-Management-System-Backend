@@ -16,13 +16,13 @@ namespace TimesheetService.DBContext
         {
             modelBuilder
                 .Entity<Project>()
-                .Property(p => p.status)
+                .Property(p => p.Status)
                 .HasConversion(
                     v => v.ToString(),
                     v => (Process_Statuses)Enum.Parse(typeof(Process_Statuses), v));
             modelBuilder
               .Entity<Approval>()
-              .Property(p => p.status)
+              .Property(p => p.Status)
               .HasConversion(
                   v => v.ToString(),
                   v => (Approval_status)Enum.Parse(typeof(Approval_status), v));

@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\Response\" />
-    <Folder Include="DTOs\Request\" />
   </ItemGroup>
 
   <ItemGroup>
