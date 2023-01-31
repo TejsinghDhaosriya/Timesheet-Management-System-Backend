@@ -1,6 +1,6 @@
 ﻿namespace TimesheetService.DTOs.Request
 {
-    public class TimesheetEditInputs
+    public class TimesheetUpdateRequest
     {
         public string? Description { get; set; }
         public DateTime? Date { get; set; }

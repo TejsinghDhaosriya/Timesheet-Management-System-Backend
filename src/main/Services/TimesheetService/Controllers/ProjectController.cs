@@ -55,12 +55,12 @@ namespace TimesheetService.Controllers
 
         [HttpPatch]
         [Route("{id}")]
-        public IActionResult EditProject(long id, ProjectEditInputs project)
+        public IActionResult UpdateProject(long id, ProjectUpdateRequest project)
         {
             var currentProject = _projectService.GetProject(id);
             if (currentProject != null)
             {
-                _projectService.EditProject(id,project);
+                _projectService.UpdateProject(id,project);
                 return Ok("Project record is updated sucessfully. ");
             }
             return NotFound($"Project with Id {id} was not found.");

@@ -33,7 +33,7 @@ namespace TimesheetService.Repository
             }
         }
 
-        public Project? EditProject(long id, ProjectEditInputs project)
+        public Project? UpdateProject(long id, ProjectUpdateRequest project)
         {
             var currentProject = _projectContext.Projects.Find(id);
             if (currentProject != null)
@@ -72,7 +72,7 @@ namespace TimesheetService.Repository
 
         public List<Project> GetProjects()
         {
-            return _projectContext.Projects.ToList();
+            return _projectContext.Projects.Where(p => p.IsActive == true).ToList();
         }
     }
 }

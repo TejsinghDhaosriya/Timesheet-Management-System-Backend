@@ -9,6 +9,6 @@ namespace TimesheetService.Repositories.Interfaces
         List<TimeSheet> GetTimeSheets();
         TimeSheet? GetTimeSheet(long id);
         void DeleteTimeSheet(TimeSheet timeSheet);
-        TimeSheet? EditTimeSheet(long id, TimesheetEditInputs timeSheet);
+        TimeSheet? UpdateTimeSheet(long id, TimesheetUpdateRequest timeSheet);
     }
 }

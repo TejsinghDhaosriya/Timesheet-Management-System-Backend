@@ -133,7 +133,7 @@ namespace TimesheetServiceTest.Controller
         public void ShouldReturnUpdateProjectSuccessResponse()
         {
             // Project project = new Project();
-            ProjectEditInputs project = new ProjectEditInputs();
+            ProjectUpdateRequest project = new ProjectUpdateRequest();
             long id = 1001;
             var fakeProjectService = A.Fake<IProjectService>();
             A.CallTo(() => fakeProjectService.GetProject(id)).Returns(new Project());
@@ -154,7 +154,7 @@ namespace TimesheetServiceTest.Controller
         [Fact]
         public void ShouldReturnUpdateProjectFailedResponse()
         {
-            ProjectEditInputs project = new ProjectEditInputs();
+            ProjectUpdateRequest project = new ProjectUpdateRequest();
             long id = 0000;
             var fakeProjectService = A.Fake<IProjectService>();
             A.CallTo(() => fakeProjectService.GetProject(id)).Returns(null);

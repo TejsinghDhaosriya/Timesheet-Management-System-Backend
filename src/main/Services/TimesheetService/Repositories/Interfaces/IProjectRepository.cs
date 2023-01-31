@@ -9,6 +9,6 @@ namespace TimesheetService.Repository
         List<Project> GetProjects();
         Project? GetProject(long id);
         void DeleteProject(Project project);
-        Project? EditProject(long id, ProjectEditInputs project);
+        Project? UpdateProject(long id, ProjectUpdateRequest project);
     }
 }

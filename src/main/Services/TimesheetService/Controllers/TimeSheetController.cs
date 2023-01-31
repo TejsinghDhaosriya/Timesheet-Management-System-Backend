@@ -54,12 +54,12 @@ namespace TimesheetService.Controllers
 
         [HttpPatch]
         [Route("{id}")]
-        public IActionResult EditTimeSheet(long id, TimesheetEditInputs timeSheet)
+        public IActionResult UpdateTimeSheet(long id, TimesheetUpdateRequest timeSheet)
         {
             var currentsheet = _timeSheetService.GetTimeSheet(id);
             if (currentsheet != null)
             {
-                _timeSheetService.EditTimeSheet(id, timeSheet);
+                _timeSheetService.UpdateTimeSheet(id, timeSheet);
                 return Ok("TimeSheet record is updated sucessfully. ");
             }
             return NotFound($"TimeSheet with Id {id} was not found.");

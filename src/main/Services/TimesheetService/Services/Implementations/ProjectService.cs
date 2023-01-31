@@ -24,9 +24,9 @@ namespace TimesheetService.Services.Implementations
             _projectRepository.DeleteProject(project);
         }
 
-        public Project? EditProject(long id, ProjectEditInputs project)
+        public Project? UpdateProject(long id, ProjectUpdateRequest project)
         {
-            return _projectRepository.EditProject(id, project);
+            return _projectRepository.UpdateProject(id, project);
         }
 
 

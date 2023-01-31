@@ -86,7 +86,7 @@ namespace TimesheetServiceTest.Services
         [Fact]
         public void ShouldReturnUpdateProject()
         {
-            ProjectEditInputs project = new ProjectEditInputs()
+            ProjectUpdateRequest project = new ProjectUpdateRequest()
             {
                 Description = "this is demo description",
                 Name = "demo",

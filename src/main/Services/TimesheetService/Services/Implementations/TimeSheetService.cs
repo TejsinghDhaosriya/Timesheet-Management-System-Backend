@@ -23,9 +23,9 @@ namespace TimesheetService.Services.Implementations
             _timeSheetRepository.DeleteTimeSheet(timeSheet);
         }
 
-        public TimeSheet? EditTimeSheet(long id, TimesheetEditInputs timeSheet)
+        public TimeSheet? UpdateTimeSheet(long id, TimesheetUpdateRequest timeSheet)
         {
-            return _timeSheetRepository.EditTimeSheet(id, timeSheet);
+            return _timeSheetRepository.UpdateTimeSheet(id, timeSheet);
         }
 
 

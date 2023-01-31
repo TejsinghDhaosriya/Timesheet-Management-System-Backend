@@ -29,7 +29,7 @@ namespace TimesheetService.Repositories.Implementations
             _timeSheetContext.SaveChanges();
         }
 
-        public TimeSheet? EditTimeSheet(long id, TimesheetEditInputs timeSheet)
+        public TimeSheet? UpdateTimeSheet(long id, TimesheetUpdateRequest timeSheet)
         {
             var currentsheet = _timeSheetContext.TimeSheets.Find(id);
             if (currentsheet != null)
