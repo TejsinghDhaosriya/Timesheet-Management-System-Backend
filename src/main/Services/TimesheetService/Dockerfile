@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["TimesheetService/TimesheetService.csproj", "TimesheetService/"]
-RUN dotnet restore "TimesheetService/TimesheetService.csproj"
+COPY ["main/Services/TimesheetService/TimesheetService.csproj", "main/Services/TimesheetService/"]
+RUN dotnet restore "main/Services/TimesheetService/TimesheetService.csproj"
 COPY . .
-WORKDIR "/src/TimesheetService"
+WORKDIR "/src/main/Services/TimesheetService"
 RUN dotnet build "TimesheetService.csproj" -c Release -o /app/build
 
 FROM build AS publish
