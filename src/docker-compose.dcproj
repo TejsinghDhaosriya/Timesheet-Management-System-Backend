@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>c4144f82-3004-4602-a712-1b458927ad9e</ProjectGuid>
+    <ProjectGuid>ae2f72c8-c2a9-4e69-89fc-cab610592f95</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>apigateway</DockerServiceName>
