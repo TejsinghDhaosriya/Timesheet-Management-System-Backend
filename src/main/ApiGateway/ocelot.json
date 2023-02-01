@@ -1,10 +1,10 @@
 {
   "Routes": [
- 
+
     // Project Web API
     {
       "UpstreamPathTemplate": "/api/v1/project",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -16,7 +16,7 @@
     },
     {
       "UpstreamPathTemplate": "/api/v1/project/{projectId}",
-      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -25,6 +25,58 @@
         }
       ],
       "DownstreamPathTemplate": "/api/v1/project/{projectId}"
+    },
+
+    // Timesheet Web API
+    {
+      "UpstreamPathTemplate": "/api/v1/timesheet",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timesheetservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/v1/timesheet"
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/timesheet/{timesheetId}",
+      "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timesheetservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/v1/timesheet/{timesheetId}"
+    },
+
+    // Approval Web API
+    {
+      "UpstreamPathTemplate": "/api/v1/timesheet/approval",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timesheetservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/v1/timesheet/approval"
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/timesheet/approval/{approvalId}",
+      "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timesheetservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/v1/timesheet/approval/{approvalId}"
     }
   ],
   "GlobalConfiguration": {
