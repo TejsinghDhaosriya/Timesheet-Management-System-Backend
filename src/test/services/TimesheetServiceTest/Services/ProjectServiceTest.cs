@@ -65,7 +65,7 @@ namespace TimesheetServiceTest.Services
 
             var result = ProjectRepo.AddProject(project);
             Assert.NotNull(result);
-            Assert.Equal(result,project);
+            Assert.Equal(result, project);
 
         }
 
@@ -95,11 +95,11 @@ namespace TimesheetServiceTest.Services
             };
             long id = 1001;
             var fakeProjectRepository = A.Fake<IProjectRepository>();
-            A.CallTo(() => fakeProjectRepository.EditProject(id, project)).Returns(new Project());
+            A.CallTo(() => fakeProjectRepository.UpdateProject(id, project)).Returns(new Project());
 
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
-            var result = ProjectRepo.EditProject(id, project);
+            var result = ProjectRepo.UpdateProject(id, project);
             Assert.NotNull(result);
 
 

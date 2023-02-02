@@ -14,9 +14,9 @@ namespace TimesheetService.Services.Implementations
             _projectRepository = projectRepository;
         }
 
-        public Project AddProject(Project project)
+        public Project? AddProject(Project project, long OrganizationId)
         {
-            return _projectRepository.AddProject(project);
+            return _projectRepository.AddProject(project, OrganizationId);
         }
 
         public void DeleteProject(Project project)

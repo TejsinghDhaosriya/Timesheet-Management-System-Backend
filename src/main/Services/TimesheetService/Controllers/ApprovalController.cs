@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Services.Interfaces;
 
@@ -32,9 +33,9 @@ namespace TimesheetService.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddApproval(Approval approval)
+        public IActionResult AddApproval(TimeSheet approval, [FromHeader] HeaderDTO headerValues)
         {
-            var createdApproval = _approvalService.AddApproval(approval);
+            var createdApproval = _approvalService.AddApproval(approval, headerValues);
             return Ok(createdApproval);
         }
 

@@ -18,21 +18,18 @@ namespace TimesheetService.Models
         [Column("total_hours")]
         public int TotalHours { get; set; }
 
-        [Column("overtime_hours")]
-        public int? OvertimeHours { get; set; }
-
         [Column("created_by")]
-        public long? CreatedBy { get; set; }
+        public long CreatedBy { get; set; }
 
         [Column("organization_id")]
         public long OrganizationId { get; set; }
 
         [Column("created_at")]
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [Column("modified_at")]
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
 
-        public ICollection<Approval> approvals { get; set; }
+        public ICollection<Approval>? approvals { get; set; }
     }
 }

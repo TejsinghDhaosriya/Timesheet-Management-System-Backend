@@ -14,8 +14,10 @@ namespace TimesheetService.Repositories.Implementations
             _timeSheetContext = projectContext;
         }
 
-        public TimeSheet AddTimeSheet(TimeSheet timeSheet)
+        public TimeSheet AddTimeSheet(TimeSheet timeSheet, HeaderDTO headerValues)
         {
+            timeSheet.CreatedBy = headerValues.UserID;
+            timeSheet.OrganizationId = headerValues.OrganizationId;
             timeSheet.CreatedAt = DateTime.UtcNow;
             timeSheet.ModifiedAt = DateTime.UtcNow;
             _timeSheetContext.TimeSheets.Add(timeSheet);
@@ -36,19 +38,17 @@ namespace TimesheetService.Repositories.Implementations
             {
                 if (timeSheet.Description != null)
                     currentsheet.Description = timeSheet.Description;
-                if(timeSheet.Date != null)
+                if (timeSheet.Date != null)
                     currentsheet.Date = (DateTime)timeSheet.Date;
-                if(timeSheet.TotalHours != null)
+                if (timeSheet.TotalHours != null)
                     currentsheet.TotalHours = (int)timeSheet.TotalHours;
-                if(timeSheet.OvertimeHours != null)
-                    currentsheet.OvertimeHours = timeSheet.OvertimeHours;
 
                 currentsheet.ModifiedAt = DateTime.UtcNow;
                 _timeSheetContext.Update(currentsheet);
                 _timeSheetContext.SaveChanges();
                 return currentsheet;
             }
-             return null;
+            return null;
         }
 
         public TimeSheet? GetTimeSheet(long id)
