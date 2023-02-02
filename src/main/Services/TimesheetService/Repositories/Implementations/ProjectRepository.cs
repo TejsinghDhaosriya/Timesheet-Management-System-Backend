@@ -12,14 +12,20 @@ namespace TimesheetService.Repository
             _projectContext = projectContext;
         }
 
-        public Project AddProject(Project project)
+        public Project? AddProject(Project project, long OrganizationId)
         {
-            project.CreatedAt = DateTime.UtcNow;
-            project.ModifiedAt = DateTime.UtcNow;
-            project.IsActive = true;
-            _projectContext.Projects.Add(project);
-            _projectContext.SaveChanges();
-            return project;
+            var currentProject = _projectContext.Projects.Where(p => p.Name == project.Name);
+            if (currentProject == null)
+            {
+                project.OrganizationId = OrganizationId;
+                project.IsActive = true;
+                project.CreatedAt = DateTime.UtcNow;
+                project.ModifiedAt = DateTime.UtcNow;
+                _projectContext.Projects.Add(project);
+                _projectContext.SaveChanges();
+                return project;
+            }
+            return null;
         }
 
         public void DeleteProject(Project project)

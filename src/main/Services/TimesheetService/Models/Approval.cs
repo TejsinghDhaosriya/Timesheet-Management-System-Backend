@@ -10,7 +10,8 @@ namespace TimesheetService.Models
         public long Id { get; set; }
 
         [Column("timesheet_id")]
-        public TimeSheet TimeSheet { get; set; }
+        [ForeignKey("ID")]
+        public virtual long TimesheetId { get; set; }
 
         [Column("status")]
         public Approval_status Status { get; set; }
@@ -19,7 +20,7 @@ namespace TimesheetService.Models
         public string? ReasonForRejection { get; set; }
 
         [Column("approval_date")]
-        public DateTime ApprovalDate { get; set; }
+        public DateTime? ApprovalDate { get; set; }
 
         [Column("manager_id")]
         public long ManagerId { get; set; }

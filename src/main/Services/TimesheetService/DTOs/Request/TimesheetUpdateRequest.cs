@@ -5,6 +5,5 @@
         public string? Description { get; set; }
         public DateTime? Date { get; set; }
         public int? TotalHours { get; set; }
-        public int? OvertimeHours { get; set; }
     }
 }

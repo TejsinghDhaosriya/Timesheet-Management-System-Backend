@@ -32,13 +32,13 @@ namespace TimesheetService.Models
         public long OrganizationId { get; set; }
 
         [Column("is_active")]
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         [Column("created_at")]
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [Column("modified_at")]
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
     }
 
     public enum Process_Statuses

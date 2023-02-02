@@ -1,4 +1,5 @@
-﻿using TimesheetService.Models;
+﻿using TimesheetService.DTOs.Request;
+using TimesheetService.Models;
 using TimesheetService.Repositories.Interfaces;
 using TimesheetService.Services.Interfaces;
 
@@ -12,9 +13,9 @@ namespace TimesheetService.Services.Implementations
             _approvalRepository = approvalRepository;
         }
 
-        public Approval AddApproval(Approval approval)
+        public Approval? AddApproval(TimeSheet timeSheet, HeaderDTO headervalues)
         {
-            return _approvalRepository.AddApproval(approval);
+            return _approvalRepository.AddApproval(timeSheet, headervalues);
         }
 
         public void DeleteApproval(Approval approval)

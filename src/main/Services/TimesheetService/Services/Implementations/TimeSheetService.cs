@@ -8,14 +8,18 @@ namespace TimesheetService.Services.Implementations
     public class TimeSheetService : ITimeSheetService
     {
         private readonly ITimeSheetRepository _timeSheetRepository;
-        public TimeSheetService(ITimeSheetRepository timeSheetRepository)
+        private readonly IApprovalService _approvalService;
+        public TimeSheetService(ITimeSheetRepository timeSheetRepository, IApprovalService approvalService)
         {
             _timeSheetRepository = timeSheetRepository;
+            _approvalService = approvalService;
         }
 
-        public TimeSheet AddTimeSheet(TimeSheet timeSheet)
+        public TimeSheet AddTimeSheet(TimeSheet timeSheet, HeaderDTO headerValues)
         {
-            return _timeSheetRepository.AddTimeSheet(timeSheet);
+            var createdSheet = _timeSheetRepository.AddTimeSheet(timeSheet, headerValues);
+            var createdApproval = _approvalService.AddApproval(createdSheet, headerValues);
+            return createdSheet;
         }
 
         public void DeleteTimeSheet(TimeSheet timeSheet)

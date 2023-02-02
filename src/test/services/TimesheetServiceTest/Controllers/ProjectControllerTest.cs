@@ -137,11 +137,11 @@ namespace TimesheetServiceTest.Controller
             long id = 1001;
             var fakeProjectService = A.Fake<IProjectService>();
             A.CallTo(() => fakeProjectService.GetProject(id)).Returns(new Project());
-            A.CallTo(() => fakeProjectService.EditProject(id, project)).Returns(new Project());
+            A.CallTo(() => fakeProjectService.UpdateProject(id, project)).Returns(new Project());
 
             var ProjectServ = new ProjectController(fakeProjectService);
 
-            var result = ProjectServ.EditProject(id, project);
+            var result = ProjectServ.UpdateProject(id, project);
             Assert.NotNull(result);
 
             var response = (OkObjectResult)result;
@@ -161,7 +161,7 @@ namespace TimesheetServiceTest.Controller
 
             var ProjectServ = new ProjectController(fakeProjectService);
 
-            var result = ProjectServ.EditProject(id, project);
+            var result = ProjectServ.UpdateProject(id, project);
             Assert.NotNull(result);
 
             var response = (NotFoundObjectResult)result;

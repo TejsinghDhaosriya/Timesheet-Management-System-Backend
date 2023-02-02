@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Services.Interfaces;
@@ -24,45 +25,86 @@ namespace TimesheetService.Controllers
         [Route("{id}")]
         public IActionResult GetTimeSheet(long id)
         {
-            var sheet = _timeSheetService.GetTimeSheet(id);
-            if (sheet != null)
+            try
             {
-                return Ok(sheet);
+                var sheet = _timeSheetService.GetTimeSheet(id);
+                if (sheet != null)
+                {
+                    return Ok(sheet);
+                }
+                return NotFound($"TimeSheet with Id {id} was not found.");
             }
-            return NotFound($"TimeSheet with Id {id} was not found.");
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost]
         public IActionResult AddTimeSheet(TimeSheet timeSheet)
         {
-            var createdSheet = _timeSheetService.AddTimeSheet(timeSheet);
-            return Ok(createdSheet);
+            try
+            {
+                HeaderDTO headerValues = new HeaderDTO();
+                Request.Headers.TryGetValue("user_id", out StringValues headerValue1);
+                Request.Headers.TryGetValue("organization_id", out StringValues headerValue2);
+                Request.Headers.TryGetValue("project_id", out StringValues headerValue3);
+                headerValues.UserID = long.Parse(headerValue1);
+                headerValues.OrganizationId = long.Parse(headerValue2);
+                headerValues.ProjectId = long.Parse(headerValue3);
+
+                var createdSheet = _timeSheetService.AddTimeSheet(timeSheet, headerValues);
+                return Ok(createdSheet);
+            }
+            catch(NullReferenceException ex)
+            {
+                return BadRequest(ex.InnerException);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult DeleteTimeSheet(long id)
         {
-            var sheet = _timeSheetService.GetTimeSheet(id);
-            if (sheet != null)
+            try
             {
-                _timeSheetService.DeleteTimeSheet(sheet);
-                return Ok("TimeSheet record is deleted sucessfully. ");
+                var sheet = _timeSheetService.GetTimeSheet(id);
+                if (sheet != null)
+                {
+                    _timeSheetService.DeleteTimeSheet(sheet);
+                    return Ok("TimeSheet record is deleted sucessfully. ");
+                }
+                return NotFound($"TimeSheet with Id {id} was not found.");
             }
-            return NotFound($"TimeSheet with Id {id} was not found.");
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         [HttpPatch]
         [Route("{id}")]
         public IActionResult UpdateTimeSheet(long id, TimesheetUpdateRequest timeSheet)
         {
-            var currentsheet = _timeSheetService.GetTimeSheet(id);
-            if (currentsheet != null)
+            try
             {
-                _timeSheetService.UpdateTimeSheet(id, timeSheet);
-                return Ok("TimeSheet record is updated sucessfully. ");
+                var currentsheet = _timeSheetService.GetTimeSheet(id);
+                if (currentsheet != null)
+                {
+                    _timeSheetService.UpdateTimeSheet(id, timeSheet);
+                    return Ok("TimeSheet record is updated sucessfully. ");
+                }
+                return NotFound($"TimeSheet with Id {id} was not found.");
             }
-            return NotFound($"TimeSheet with Id {id} was not found.");
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
+
     }
 }

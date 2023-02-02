@@ -1,4 +1,5 @@
 ﻿using TimesheetService.DBContext;
+using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Repositories.Interfaces;
 
@@ -12,13 +13,24 @@ namespace TimesheetService.Repositories.Implementations
             _approvalContext = approvalContext;
         }
 
-        public Approval AddApproval(Approval approval)
+        public Approval? AddApproval(TimeSheet timeSheet, HeaderDTO headerValues)
         {
-            approval.CreatedAt = DateTime.Now;
-            approval.ModifiedAt = DateTime.Now;
-            _approvalContext.Approvals.Add(approval);
-            _approvalContext.SaveChanges();
-            return approval;
+            var projectId = headerValues.ProjectId;
+            var project = _approvalContext.Projects.Find(projectId);
+            if (project != null)
+            {
+                Approval approval = new Approval();
+                approval.TimesheetId = timeSheet.Id;
+                approval.OrganizationId = headerValues.OrganizationId;
+                approval.ManagerId = project.ManagerId;
+                approval.Status = 0;
+                approval.CreatedAt = DateTime.Now;
+                approval.ModifiedAt = DateTime.Now;
+                _approvalContext.Approvals.Add(approval);
+                _approvalContext.SaveChanges();
+                return approval;
+            }
+            return null;
         }
 
         public void DeleteApproval(Approval approval)
