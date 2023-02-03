@@ -13,32 +13,40 @@ namespace TimesheetService.Models
         [Column("name")]
         public string Name { get; set; }
 
+        [Required]
         [Column("description")]
         public string Description { get; set; }
 
+        [Required]
         [Column("start_date")]
         public DateTime StartDate { get; set; }
 
         [Column("end_date")]
         public DateTime? EndDate { get; set; }
 
+        [Required]
         [Column("status")]
         public Process_Statuses Status { get; set; }
 
         [Column("manager_id")]
+        [Required]
         public long ManagerId { get; set; }
 
+        [Required]
         [Column("organization_id")]
         public long OrganizationId { get; set; }
 
+        [Required]
         [Column("is_active")]
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
+        [Required]
         [Column("created_at")]
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
+        [Required]
         [Column("modified_at")]
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
     }
 
     public enum Process_Statuses

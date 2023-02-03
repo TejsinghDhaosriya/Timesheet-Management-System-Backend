@@ -12,14 +12,20 @@ namespace TimesheetService.Repository
             _projectContext = projectContext;
         }
 
-        public Project AddProject(Project project)
+        public Project? AddProject(Project project, long OrganizationId)
         {
-            project.CreatedAt = DateTime.UtcNow;
-            project.ModifiedAt = DateTime.UtcNow;
-            project.IsActive = true;
-            _projectContext.Projects.Add(project);
-            _projectContext.SaveChanges();
-            return project;
+            var currentProject = _projectContext.Projects.Any(x => x.Name == project.Name);
+            if (currentProject == false)
+            {
+                project.OrganizationId = OrganizationId;
+                project.IsActive = true;
+                project.CreatedAt = DateTime.UtcNow;
+                project.ModifiedAt = DateTime.UtcNow;
+                _projectContext.Projects.Add(project);
+                _projectContext.SaveChanges();
+                return project;
+            }
+            return null;
         }
 
         public void DeleteProject(Project project)
@@ -40,15 +46,15 @@ namespace TimesheetService.Repository
             {
                 if (project.Name != null)
                     currentProject.Name = project.Name;
-                if(project.Description != null)
+                if (project.Description != null)
                     currentProject.Description = project.Description;
-                if(project.StartDate != null)
+                if (project.StartDate != null)
                     currentProject.StartDate = (DateTime)project.StartDate;
-                if(project.EndDate != null)
+                if (project.EndDate != null)
                     currentProject.EndDate = project.EndDate;
-                if(project.Status != null)
+                if (project.Status != null)
                     currentProject.Status = (Process_Statuses)project.Status;
-                if(project.ManagerId != null)
+                if (project.ManagerId != null)
                     currentProject.ManagerId = (long)project.ManagerId;
 
                 currentProject.ModifiedAt = DateTime.UtcNow;
