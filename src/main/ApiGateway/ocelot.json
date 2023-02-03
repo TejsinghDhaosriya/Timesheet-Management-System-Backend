@@ -80,6 +80,11 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8001"
+    "BaseUrl": "http://localhost:8001",
+    "AddHeaders": {
+      "user_id": 12,
+      "organization_id": 1,
+      "project_id": 101
+    }
   }
 }
