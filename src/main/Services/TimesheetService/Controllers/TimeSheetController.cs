@@ -17,9 +17,9 @@ namespace TimesheetService.Controllers
             _timeSheetService = timeSheetService;
         }
         [HttpGet]
-        public IActionResult GetTimeSheets()
+        public IActionResult GetTimeSheets(long? userId, long? organizationId, DateTime? startDate, DateTime? endDate)
         {
-            return Ok(_timeSheetService.GetTimeSheets());
+            return Ok(_timeSheetService.GetTimeSheets(userId, organizationId, startDate, endDate));
         }
         [HttpGet]
         [Route("{id}")]

@@ -61,8 +61,22 @@ namespace TimesheetService.Repositories.Implementations
             return null;
         }
 
-        public List<TimeSheet> GetTimeSheets()
+        public List<TimeSheet> GetTimeSheets(long? userId, long? organizationId, DateTime? startDate, DateTime? endDate)
         {
+            if (userId != null && organizationId != null && startDate != null && endDate != null)
+            {
+                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.Date <= endDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+            }
+            else
+                if (userId != null && organizationId != null && startDate == null && endDate != null)
+            {
+                return _timeSheetContext.TimeSheets.Where(t => t.Date <= endDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+            }
+            else
+                 if (userId != null && organizationId != null && startDate != null && endDate == null)
+            {
+                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+            }
             return _timeSheetContext.TimeSheets.ToList();
         }
     }

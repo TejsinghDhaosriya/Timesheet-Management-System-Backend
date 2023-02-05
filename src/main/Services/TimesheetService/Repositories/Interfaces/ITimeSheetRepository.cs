@@ -6,7 +6,7 @@ namespace TimesheetService.Repositories.Interfaces
     public interface ITimeSheetRepository
     {
         TimeSheet AddTimeSheet(TimeSheet timeSheet, HeaderDTO headerValues);
-        List<TimeSheet> GetTimeSheets();
+        List<TimeSheet> GetTimeSheets(long? userId, long? organizationId, DateTime? startDate, DateTime? endDate);
         TimeSheet? GetTimeSheet(long id);
         void DeleteTimeSheet(TimeSheet timeSheet);
         TimeSheet? UpdateTimeSheet(long id, TimesheetUpdateRequest timeSheet);
