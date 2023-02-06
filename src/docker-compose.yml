@@ -11,6 +11,7 @@ services:
       context: .
       dockerfile: ../src/main/ApiGateway/Dockerfile
     ports: 
+       - 5001:443
        - 8001:80
     networks:
         - backend
