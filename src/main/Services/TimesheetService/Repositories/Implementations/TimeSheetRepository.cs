@@ -1,4 +1,5 @@
-﻿using TimesheetService.DBContext;
+﻿using Microsoft.EntityFrameworkCore;
+using TimesheetService.DBContext;
 using TimesheetService.DTOs.Request;
 using TimesheetService.Models;
 using TimesheetService.Repositories.Interfaces;
@@ -61,7 +62,7 @@ namespace TimesheetService.Repositories.Implementations
             return null;
         }
 
-        public List<TimeSheet> GetTimeSheets(long? userId, long? organizationId, DateTime? startDate, DateTime? endDate)
+        public List<TimeSheet> GetTimeSheets(long? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
         {
             if (userId != null && organizationId != null && startDate != null && endDate != null)
             {
@@ -76,6 +77,13 @@ namespace TimesheetService.Repositories.Implementations
                  if (userId != null && organizationId != null && startDate != null && endDate == null)
             {
                 return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+            }
+            if (withApproval == true)
+            {
+                var timeSheet = _timeSheetContext.TimeSheets
+                .Include(t => t.approvals);
+
+                return timeSheet.ToList();
             }
             return _timeSheetContext.TimeSheets.ToList();
         }

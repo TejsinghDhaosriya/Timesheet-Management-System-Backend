@@ -32,13 +32,6 @@ namespace TimesheetService.Controllers
             return NotFound($"Approval with Id {id} was not found.");
         }
 
-        [HttpPost]
-        public IActionResult AddApproval(TimeSheet approval, [FromHeader] HeaderDTO headerValues)
-        {
-            var createdApproval = _approvalService.AddApproval(approval, headerValues);
-            return Ok(createdApproval);
-        }
-
         [HttpDelete]
         [Route("{id}")]
         public IActionResult DeleteApproval(long id)
@@ -54,16 +47,15 @@ namespace TimesheetService.Controllers
 
         [HttpPatch]
         [Route("{id}")]
-        public IActionResult EditApproval(long id, Approval approval)
+        public IActionResult UpdateApproval(long id, ApprovalUpdateRequest approval)
         {
             var currentApproval = _approvalService.GetApproval(id);
             if (currentApproval != null)
             {
-                approval.Id = id;
-                _approvalService.EditApproval(approval);
+                _approvalService.UpdateApproval(id, approval);
                 return Ok("Approval record is updated sucessfully. ");
             }
-            return NotFound($"Approval with Id {approval.Id} was not found.");
+            return NotFound($"Approval with Id {id} was not found.");
         }
     }
 }
