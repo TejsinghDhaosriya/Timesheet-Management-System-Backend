@@ -23,9 +23,9 @@ namespace TimesheetService.Services.Implementations
             _approvalRepository.DeleteApproval(approval);
         }
 
-        public Approval? EditApproval(Approval approval)
+        public Approval? UpdateApproval(long id, ApprovalUpdateRequest approval)
         {
-            return _approvalRepository.EditApproval(approval);
+            return _approvalRepository.UpdateApproval(id, approval);
         }
 
 

@@ -39,18 +39,19 @@ namespace TimesheetService.Repositories.Implementations
             _approvalContext.SaveChanges();
         }
 
-        public Approval? EditApproval(Approval approval)
+        public Approval? UpdateApproval(long id, ApprovalUpdateRequest approval)
         {
-            var currentApproval = _approvalContext.Approvals.Find(approval.Id);
+            var currentApproval = _approvalContext.Approvals.Find(id);
             if (currentApproval != null)
             {
                 if (approval.Status != null)
-                    currentApproval.Status = approval.Status;
+                    currentApproval.Status = (Approval_status)approval.Status;
                 if (approval.ApprovalDate != null)
                     currentApproval.ApprovalDate = approval.ApprovalDate;
                 if (approval.ReasonForRejection != null)
                     currentApproval.ReasonForRejection = approval.ReasonForRejection;
 
+                currentApproval.ModifiedAt = DateTime.UtcNow;
                 _approvalContext.Update(currentApproval);
                 _approvalContext.SaveChanges();
                 return currentApproval;
