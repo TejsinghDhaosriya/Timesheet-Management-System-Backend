@@ -6,7 +6,7 @@ using TimesheetService.Services.Interfaces;
 
 namespace TimesheetService.Controllers
 {
-    [Route("api/v1/approval")]
+    [Route("api/v1/timesheet/approval")]
     [ApiController]
     public class ApprovalController : ControllerBase
     {

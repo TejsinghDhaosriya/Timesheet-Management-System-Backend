@@ -13,11 +13,11 @@ builder.Services.AddCors(options =>
         builder => builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
-            .AllowAnyHeader()
-             .AllowCredentials());
+            .AllowAnyHeader());
 });
 
 var app = builder.Build();
+app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
 await app.UseOcelot();
