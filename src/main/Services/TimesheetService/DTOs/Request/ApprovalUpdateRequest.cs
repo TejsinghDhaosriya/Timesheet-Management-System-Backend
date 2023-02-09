@@ -6,7 +6,6 @@ namespace TimesheetService.DTOs.Request
     {
         public Approval_status? Status { get; set; }
         public string? ReasonForRejection { get; set; }
-        public DateTime? ApprovalDate { get; set; }
 
     }
 }

@@ -57,5 +57,13 @@ namespace TimesheetService.Controllers
             }
             return NotFound($"Approval with Id {id} was not found.");
         }
+
+        [HttpPatch]
+        [Route("/api/v1/timesheet/approvals")]
+        public IActionResult UpdateApprovals(List<Approval> approvals)
+        {
+           var updatedApproval =  _approvalService.UpdateApprovals(approvals);
+                return Ok(updatedApproval);
+        }
     }
 }
