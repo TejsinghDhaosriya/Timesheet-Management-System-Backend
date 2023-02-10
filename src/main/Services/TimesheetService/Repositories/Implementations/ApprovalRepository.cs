@@ -46,11 +46,10 @@ namespace TimesheetService.Repositories.Implementations
             {
                 if (approval.Status != null)
                     currentApproval.Status = (Approval_status)approval.Status;
-                if (approval.ApprovalDate != null)
-                    currentApproval.ApprovalDate = approval.ApprovalDate;
                 if (approval.ReasonForRejection != null)
                     currentApproval.ReasonForRejection = approval.ReasonForRejection;
 
+                currentApproval.ApprovalDate = DateTime.UtcNow;
                 currentApproval.ModifiedAt = DateTime.UtcNow;
                 _approvalContext.Update(currentApproval);
                 _approvalContext.SaveChanges();
@@ -72,6 +71,31 @@ namespace TimesheetService.Repositories.Implementations
         public List<Approval> GetApprovals()
         {
             return _approvalContext.Approvals.ToList();
+        }
+
+        public List<Approval>? UpdateApprovals(List<Approval> approvals)
+        {
+            List<Approval> approvalsList = new List<Approval>();
+            foreach (var approval in approvals)
+            {
+                var currentApproval = _approvalContext.Approvals.Find(approval.Id);
+                if (currentApproval != null)
+                {
+                    currentApproval.Status = approval.Status;
+                    currentApproval.ReasonForRejection = approval.ReasonForRejection;
+                    currentApproval.ApprovalDate = DateTime.UtcNow;
+                    currentApproval.ModifiedAt = DateTime.Now;
+                    _approvalContext.Update(currentApproval);
+                    _approvalContext.SaveChanges();
+                    approvalsList.Add(currentApproval);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return approvalsList;
+          
         }
     }
 }

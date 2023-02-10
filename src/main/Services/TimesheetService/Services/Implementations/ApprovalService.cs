@@ -38,5 +38,10 @@ namespace TimesheetService.Services.Implementations
         {
             return _approvalRepository.GetApprovals();
         }
+
+        public List<Approval>? UpdateApprovals(List<Approval> approvals)
+        {
+            return _approvalRepository.UpdateApprovals(approvals);
+        }
     }
 }

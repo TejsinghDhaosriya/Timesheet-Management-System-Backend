@@ -10,5 +10,6 @@ namespace TimesheetService.Services.Interfaces
         Approval? GetApproval(long id);
         void DeleteApproval(Approval approval);
         Approval? UpdateApproval(long id, ApprovalUpdateRequest approval);
+        List<Approval>? UpdateApprovals(List<Approval> approvals);
     }
 }
