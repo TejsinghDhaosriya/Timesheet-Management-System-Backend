@@ -64,26 +64,29 @@ namespace TimesheetService.Repositories.Implementations
 
         public List<TimeSheet> GetTimeSheets(long? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
         {
-            if (userId != null && organizationId != null && startDate != null && endDate != null)
+            if (userId != null && organizationId != null && startDate != null && endDate != null && withApproval == true)
             {
-                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.Date <= endDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.Date <= endDate && t.CreatedBy == userId && t.OrganizationId == organizationId).Include(t => t.approvals).ToList();
             }
             else
-                if (userId != null && organizationId != null && startDate == null && endDate != null)
+                if (userId != null && organizationId != null && startDate == null && endDate != null && withApproval == true)
             {
-                return _timeSheetContext.TimeSheets.Where(t => t.Date <= endDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+                return _timeSheetContext.TimeSheets.Where(t => t.Date <= endDate && t.CreatedBy == userId && t.OrganizationId == organizationId).Include(t => t.approvals).ToList();
             }
             else
-                 if (userId != null && organizationId != null && startDate != null && endDate == null)
+                 if (userId != null && organizationId != null && startDate != null && endDate == null && withApproval == true)
             {
-                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
+                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.CreatedBy == userId && t.OrganizationId == organizationId).Include(t => t.approvals).ToList();
             }
-            if (withApproval == true)
+            else
+                if (userId != null && organizationId != null && withApproval == true)
             {
-                var timeSheet = _timeSheetContext.TimeSheets
-                .Include(t => t.approvals);
-
-                return timeSheet.ToList();
+                return _timeSheetContext.TimeSheets.Where(t => t.CreatedBy == userId && t.OrganizationId == organizationId).Include(t => t.approvals).ToList();
+            }
+            else
+                if (withApproval == true)
+            {
+                return _timeSheetContext.TimeSheets.Include(t => t.approvals).ToList();
             }
             return _timeSheetContext.TimeSheets.ToList();
         }
