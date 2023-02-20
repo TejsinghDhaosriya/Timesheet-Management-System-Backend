@@ -31,6 +31,19 @@ services:
       dockerfile: ../src/main/Services/TimesheetService/Dockerfile
     networks:
      - backend
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_ADDR: postgres
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_SCHEMA: public
+        DB_PASSWORD: 
+        KEYCLOAK_USER: 
+        KEYCLOAK_PASSWORD: 
+      ports:
+        - 8080:8080
 volumes:
   database-data: # named volumes can be managed easier using docker-compose
    
