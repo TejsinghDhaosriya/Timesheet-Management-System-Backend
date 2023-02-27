@@ -30,7 +30,7 @@ namespace TimesheetService.Models
 
         [Column("manager_id")]
         [Required]
-        public long ManagerId { get; set; }
+        public Guid ManagerId { get; set; }
 
         [Required]
         [Column("organization_id")]
