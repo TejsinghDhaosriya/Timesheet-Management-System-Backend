@@ -9,7 +9,7 @@ namespace TimesheetService.DTOs.Request
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public Process_Statuses? Status { get; set; }
-        public Guid? ManagerId { get; set; }
+        public string? ManagerId { get; set; }
 
     }
 }

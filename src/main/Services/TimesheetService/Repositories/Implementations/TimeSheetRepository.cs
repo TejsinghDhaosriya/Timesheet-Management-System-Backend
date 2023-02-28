@@ -62,7 +62,7 @@ namespace TimesheetService.Repositories.Implementations
             return null;
         }
 
-        public List<TimeSheet> GetTimeSheets(Guid? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
+        public List<TimeSheet> GetTimeSheets(string? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
         {
             if (userId != null && organizationId != null && startDate != null && endDate != null && withApproval == true)
             {
