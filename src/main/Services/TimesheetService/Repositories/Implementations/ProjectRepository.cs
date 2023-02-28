@@ -55,7 +55,7 @@ namespace TimesheetService.Repository
                 if (project.Status != null)
                     currentProject.Status = (Process_Statuses)project.Status;
                 if (project.ManagerId != null)
-                    currentProject.ManagerId = (Guid)project.ManagerId;
+                    currentProject.ManagerId = project.ManagerId;
 
                 currentProject.ModifiedAt = DateTime.UtcNow;
                 _projectContext.Update(currentProject);

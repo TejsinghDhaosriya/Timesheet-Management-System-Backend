@@ -17,7 +17,7 @@ namespace TimesheetService.Controllers
             _timeSheetService = timeSheetService;
         }
         [HttpGet]
-        public IActionResult GetTimeSheets(Guid? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
+        public IActionResult GetTimeSheets(string? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
         {
             return Ok(_timeSheetService.GetTimeSheets(userId, organizationId, startDate, endDate, withApproval));
         }
@@ -49,7 +49,7 @@ namespace TimesheetService.Controllers
                 Request.Headers.TryGetValue("user_id", out StringValues headerValue1);
                 Request.Headers.TryGetValue("organization_id", out StringValues headerValue2);
                 Request.Headers.TryGetValue("project_id", out StringValues headerValue3);
-                headerValues.UserID = Guid.Parse(headerValue1);
+                headerValues.UserID = headerValue1;
                 headerValues.OrganizationId = long.Parse(headerValue2);
                 headerValues.ProjectId = long.Parse(headerValue3);
 

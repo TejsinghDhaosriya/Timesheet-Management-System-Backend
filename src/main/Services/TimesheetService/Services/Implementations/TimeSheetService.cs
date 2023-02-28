@@ -38,7 +38,7 @@ namespace TimesheetService.Services.Implementations
             return _timeSheetRepository.GetTimeSheet(id);
         }
 
-        public List<TimeSheet> GetTimeSheets(Guid? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
+        public List<TimeSheet> GetTimeSheets(string? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
         {
             return _timeSheetRepository.GetTimeSheets(userId, organizationId, startDate, endDate, withApproval);
         }

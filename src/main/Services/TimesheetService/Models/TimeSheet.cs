@@ -19,7 +19,7 @@ namespace TimesheetService.Models
         public int TotalHours { get; set; }
 
         [Column("created_by")]
-        public Guid CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         [Column("organization_id")]
         public long OrganizationId { get; set; }
