@@ -59,11 +59,11 @@ namespace TimesheetServiceTest.Services
                 Status = Process_Statuses.pending
             };
             var fakeProjectRepository = A.Fake<IProjectRepository>();
-            A.CallTo(() => fakeProjectRepository.AddProject(project)).Returns(project);
+            A.CallTo(() => fakeProjectRepository.AddProject(project, project.OrganizationId)).Returns(project);
 
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
-            var result = ProjectRepo.AddProject(project);
+            var result = ProjectRepo.AddProject(project, project.OrganizationId);
             Assert.NotNull(result);
             Assert.Equal(result, project);
 

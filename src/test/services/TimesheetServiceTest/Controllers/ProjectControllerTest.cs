@@ -75,7 +75,7 @@ namespace TimesheetServiceTest.Controller
                 Status = Process_Statuses.pending
             };
             var fakeProjectService = A.Fake<IProjectService>();
-            A.CallTo(() => fakeProjectService.AddProject(project)).Returns(project);
+            A.CallTo(() => fakeProjectService.AddProject(project, project.OrganizationId)).Returns(project);
 
             var ProjectServ = new ProjectController(fakeProjectService);
 

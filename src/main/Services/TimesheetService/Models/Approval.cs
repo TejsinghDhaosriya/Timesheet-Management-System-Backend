@@ -23,7 +23,7 @@ namespace TimesheetService.Models
         public DateTime? ApprovalDate { get; set; }
 
         [Column("manager_id")]
-        public long ManagerId { get; set; }
+        public Guid ManagerId { get; set; }
 
         [Column(" organization_id")]
         public long OrganizationId { get; set; }
