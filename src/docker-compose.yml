@@ -33,7 +33,7 @@ services:
      - backend
   keycloak:
     container_name: keycloak-service
-    image: quay.io/keycloak/keycloak:20.0.0
+    image: quay.io/keycloak/keycloak:18.0.0
     command: 
     - start-dev
     - --features=declarative-user-profile 
