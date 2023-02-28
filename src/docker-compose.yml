@@ -38,8 +38,8 @@ services:
     - start-dev
     - --features=declarative-user-profile 
     volumes:
-     - $PWD/https/last/server.crt.pem:/opt/keycloak/conf/server.crt.pem
-     - $PWD/https/last/server.key.pem:/opt/keycloak/conf/server.key.pem
+     - $PWD/https/server.crt.pem:/opt/keycloak/conf/server.crt.pem
+     - $PWD/https/server.key.pem:/opt/keycloak/conf/server.key.pem
     environment:
         KC_DB: postgres
         KC_DB_URL_HOST: 
