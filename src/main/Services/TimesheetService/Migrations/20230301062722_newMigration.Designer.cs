@@ -12,8 +12,8 @@ using TimesheetService.DBContext;
 namespace TimesheetService.Migrations
 {
     [DbContext(typeof(TimeSheetDbContext))]
-    [Migration("20230131140225_initialchanges")]
-    partial class initialchanges
+    [Migration("20230301062722_newMigration")]
+    partial class newMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace TimesheetService.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("ApprovalDate")
+                    b.Property<DateTime?>("ApprovalDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("approval_date");
 
@@ -42,8 +42,8 @@ namespace TimesheetService.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
-                    b.Property<long>("ManagerId")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uuid")
                         .HasColumnName("manager_id");
 
                     b.Property<DateTime>("ModifiedAt")
@@ -63,12 +63,13 @@ namespace TimesheetService.Migrations
                         .HasColumnType("text")
                         .HasColumnName("status");
 
-                    b.Property<long>("TimeSheetId")
-                        .HasColumnType("bigint");
+                    b.Property<long>("TimesheetId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("timesheet_id");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TimeSheetId");
+                    b.HasIndex("TimesheetId");
 
                     b.ToTable("Approvals");
                 });
@@ -82,7 +83,7 @@ namespace TimesheetService.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
@@ -95,15 +96,15 @@ namespace TimesheetService.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("end_date");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
                         .HasColumnName("is_active");
 
-                    b.Property<long>("ManagerId")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uuid")
                         .HasColumnName("manager_id");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_at");
 
@@ -139,12 +140,12 @@ namespace TimesheetService.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
-                    b.Property<long?>("CreatedBy")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid")
                         .HasColumnName("created_by");
 
                     b.Property<DateTime>("Date")
@@ -156,17 +157,13 @@ namespace TimesheetService.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_at");
 
                     b.Property<long>("OrganizationId")
                         .HasColumnType("bigint")
                         .HasColumnName("organization_id");
-
-                    b.Property<int?>("OvertimeHours")
-                        .HasColumnType("integer")
-                        .HasColumnName("overtime_hours");
 
                     b.Property<int>("TotalHours")
                         .HasColumnType("integer")
@@ -179,13 +176,11 @@ namespace TimesheetService.Migrations
 
             modelBuilder.Entity("TimesheetService.Models.Approval", b =>
                 {
-                    b.HasOne("TimesheetService.Models.TimeSheet", "TimeSheet")
+                    b.HasOne("TimesheetService.Models.TimeSheet", null)
                         .WithMany("approvals")
-                        .HasForeignKey("TimeSheetId")
+                        .HasForeignKey("TimesheetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("TimeSheet");
                 });
 
             modelBuilder.Entity("TimesheetService.Models.TimeSheet", b =>

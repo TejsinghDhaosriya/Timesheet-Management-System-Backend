@@ -3,11 +3,6 @@
 
     // Project Web API
     {
-      "UpstreamHeaderTransform": {
-        "user_id": 12,
-        "organization_id": 1,
-        "project_id": 101
-      },
       "UpstreamPathTemplate": "/api/v1/project",
       "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamScheme": "http",
@@ -20,11 +15,7 @@
       "DownstreamPathTemplate": "/api/v1/project"
     },
     {
-      "UpstreamHeaderTransform": {
-        "user_id": 12,
-        "organization_id": 1,
-        "project_id": 101
-      },
+   
       "UpstreamPathTemplate": "/api/v1/project/{projectId}",
       "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",
@@ -39,11 +30,7 @@
 
     // Timesheet Web API
     {
-      "UpstreamHeaderTransform": {
-        "user_id": 12,
-        "organization_id": 1,
-        "project_id": 101
-      },
+
       "UpstreamPathTemplate": "/api/v1/timesheet",
       "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamScheme": "http",
@@ -56,11 +43,7 @@
       "DownstreamPathTemplate": "/api/v1/timesheet"
     },
     {
-      "UpstreamHeaderTransform": {
-        "user_id": 12,
-        "organization_id": 1,
-        "project_id": 101
-      },
+   
       "UpstreamPathTemplate": "/api/v1/timesheet/{timesheetId}",
       "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",
@@ -75,11 +58,7 @@
 
     // Approval Web API
     {
-      "UpstreamHeaderTransform": {
-        "user_id": 12,
-        "organization_id": 1,
-        "project_id": 101
-      },
+    
       "UpstreamPathTemplate": "/api/v1/timesheet/approval",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamScheme": "http",
@@ -92,11 +71,7 @@
       "DownstreamPathTemplate": "/api/v1/timesheet/approval"
     },
     {
-      "UpstreamHeaderTransform": {
-        "user_id": 12,
-        "organization_id": 1,
-        "project_id": 101
-      },
+   
       "UpstreamPathTemplate": "/api/v1/timesheet/approval/{approvalId}",
       "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",

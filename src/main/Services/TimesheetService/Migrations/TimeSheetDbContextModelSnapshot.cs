@@ -39,8 +39,8 @@ namespace TimesheetService.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
-                    b.Property<long>("ManagerId")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uuid")
                         .HasColumnName("manager_id");
 
                     b.Property<DateTime>("ModifiedAt")
@@ -97,8 +97,8 @@ namespace TimesheetService.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("is_active");
 
-                    b.Property<long>("ManagerId")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uuid")
                         .HasColumnName("manager_id");
 
                     b.Property<DateTime>("ModifiedAt")
@@ -141,8 +141,8 @@ namespace TimesheetService.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint")
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid")
                         .HasColumnName("created_by");
 
                     b.Property<DateTime>("Date")

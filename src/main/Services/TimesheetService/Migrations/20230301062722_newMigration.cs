@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TimesheetService.Migrations
 {
     /// <inheritdoc />
-    public partial class initialchanges : Migration
+    public partial class newMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,11 +23,11 @@ namespace TimesheetService.Migrations
                     startdate = table.Column<DateTime>(name: "start_date", type: "timestamp with time zone", nullable: false),
                     enddate = table.Column<DateTime>(name: "end_date", type: "timestamp with time zone", nullable: true),
                     status = table.Column<string>(type: "text", nullable: false),
-                    managerid = table.Column<long>(name: "manager_id", type: "bigint", nullable: false),
+                    managerid = table.Column<Guid>(name: "manager_id", type: "uuid", nullable: false),
                     organizationid = table.Column<long>(name: "organization_id", type: "bigint", nullable: false),
-                    isactive = table.Column<bool>(name: "is_active", type: "boolean", nullable: true),
-                    createdat = table.Column<DateTime>(name: "created_at", type: "timestamp with time zone", nullable: true),
-                    modifiedat = table.Column<DateTime>(name: "modified_at", type: "timestamp with time zone", nullable: true)
+                    isactive = table.Column<bool>(name: "is_active", type: "boolean", nullable: false),
+                    createdat = table.Column<DateTime>(name: "created_at", type: "timestamp with time zone", nullable: false),
+                    modifiedat = table.Column<DateTime>(name: "modified_at", type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,11 +43,10 @@ namespace TimesheetService.Migrations
                     description = table.Column<string>(type: "text", nullable: false),
                     date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     totalhours = table.Column<int>(name: "total_hours", type: "integer", nullable: false),
-                    overtimehours = table.Column<int>(name: "overtime_hours", type: "integer", nullable: true),
-                    createdby = table.Column<long>(name: "created_by", type: "bigint", nullable: true),
+                    createdby = table.Column<Guid>(name: "created_by", type: "uuid", nullable: false),
                     organizationid = table.Column<long>(name: "organization_id", type: "bigint", nullable: false),
-                    createdat = table.Column<DateTime>(name: "created_at", type: "timestamp with time zone", nullable: true),
-                    modifiedat = table.Column<DateTime>(name: "modified_at", type: "timestamp with time zone", nullable: true)
+                    createdat = table.Column<DateTime>(name: "created_at", type: "timestamp with time zone", nullable: false),
+                    modifiedat = table.Column<DateTime>(name: "modified_at", type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,11 +59,11 @@ namespace TimesheetService.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TimeSheetId = table.Column<long>(type: "bigint", nullable: false),
+                    timesheetid = table.Column<long>(name: "timesheet_id", type: "bigint", nullable: false),
                     status = table.Column<string>(type: "text", nullable: false),
                     reasonforrejection = table.Column<string>(name: "reason_for_rejection", type: "text", nullable: true),
-                    approvaldate = table.Column<DateTime>(name: "approval_date", type: "timestamp with time zone", nullable: false),
-                    managerid = table.Column<long>(name: "manager_id", type: "bigint", nullable: false),
+                    approvaldate = table.Column<DateTime>(name: "approval_date", type: "timestamp with time zone", nullable: true),
+                    managerid = table.Column<Guid>(name: "manager_id", type: "uuid", nullable: false),
                     organizationid = table.Column<long>(name: " organization_id", type: "bigint", nullable: false),
                     createdat = table.Column<DateTime>(name: "created_at", type: "timestamp with time zone", nullable: false),
                     modifiedat = table.Column<DateTime>(name: "modified_at", type: "timestamp with time zone", nullable: false)
@@ -73,17 +72,17 @@ namespace TimesheetService.Migrations
                 {
                     table.PrimaryKey("PK_Approvals", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Approvals_TimeSheets_TimeSheetId",
-                        column: x => x.TimeSheetId,
+                        name: "FK_Approvals_TimeSheets_timesheet_id",
+                        column: x => x.timesheetid,
                         principalTable: "TimeSheets",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Approvals_TimeSheetId",
+                name: "IX_Approvals_timesheet_id",
                 table: "Approvals",
-                column: "TimeSheetId");
+                column: "timesheet_id");
         }
 
         /// <inheritdoc />
