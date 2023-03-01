@@ -79,9 +79,19 @@ namespace TimesheetService.Repositories.Implementations
                 return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.CreatedBy == userId && t.OrganizationId == organizationId).Include(t => t.approvals).ToList();
             }
             else
+                if (startDate != null && endDate != null && withApproval == true)
+            {
+                return _timeSheetContext.TimeSheets.Where(t => t.Date >= startDate && t.Date <= endDate).Include(t => t.approvals).ToList();
+            }
+            else
                 if (userId != null && organizationId != null && withApproval == true)
             {
                 return _timeSheetContext.TimeSheets.Where(t => t.CreatedBy == userId && t.OrganizationId == organizationId).Include(t => t.approvals).ToList();
+            }
+            else
+             if (userId != null && organizationId != null)
+            {
+                return _timeSheetContext.TimeSheets.Where(t => t.CreatedBy == userId && t.OrganizationId == organizationId).ToList();
             }
             else
                 if (withApproval == true)
