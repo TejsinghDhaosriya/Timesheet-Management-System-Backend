@@ -12,6 +12,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Ocelot" Version="18.0.0" />
+   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
   </ItemGroup>
 
 </Project>
