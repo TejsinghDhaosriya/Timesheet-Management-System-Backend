@@ -11,16 +11,10 @@ services:
       context: .
       dockerfile: ../src/main/ApiGateway/Dockerfile
     ports: 
-       - 5001:443
        - 8001:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=5001
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=123
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
-    volumes:
-      - ./https/aspnetapp.pfx:/https/aspnetapp.pfx:ro
+      - ASPNETCORE_URLS=http://+:80
     networks:
         - backend
   timesheetservice:
@@ -37,27 +31,13 @@ services:
     command: 
     - start-dev
     - --features=declarative-user-profile 
-    volumes:
-     - $PWD/https/server.crt.pem:/opt/keycloak/conf/server.crt.pem
-     - $PWD/https/server.key.pem:/opt/keycloak/conf/server.key.pem
     environment:
-        KC_DB: postgres
-        KC_DB_URL_HOST: 
-        KC_DB_URL_DATABASE: keycloak
-        KC_DB_USERNAME: 
-        KC_DB_SCHEMA: public
-        KC_DB_PASSWORD: 
-        KC_DB_URL_PORT: 
-        KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt.pem
-        KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key.pem
         KEYCLOAK_ADMIN: admin
         KEYCLOAK_ADMIN_PASSWORD: al@123
-        PROXY_ADDRESS_FORWARDING: 'true'
-        KC_PROXY: edge
+      
     ports:
-        # - "8890:8080"
-        - "8443:8443"
-
+        - "8080:8080"
+      
     networks:
      - backend
      
