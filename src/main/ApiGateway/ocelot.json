@@ -44,6 +44,11 @@
 
       "UpstreamPathTemplate": "/api/v1/timesheet",
       "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AddHeadersToRequest": {
+        "user_id": 12,
+        "TMS-ORGANIZATION-ID": "Claims[organization_id] > value[0] > |",
+        "TMS-PROJECT-ID": "Claims[project_id] > value[0] > |"
+      },
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -55,9 +60,6 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "TMS-ORGANIZATION-ID": "12"
       }
     },
     {
