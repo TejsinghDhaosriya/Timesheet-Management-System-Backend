@@ -18,52 +18,87 @@ namespace TimesheetService.Controllers
         [HttpGet]
         public IActionResult GetApprovals()
         {
-            return Ok(_approvalService.GetApprovals());
+            try
+            {
+                return Ok(_approvalService.GetApprovals());
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetApproval(long id)
         {
-            var approval = _approvalService.GetApproval(id);
-            if (approval != null)
+            try
             {
-                return Ok(approval);
+                var approval = _approvalService.GetApproval(id);
+                if (approval != null)
+                {
+                    return Ok(approval);
+                }
+                return NotFound($"Approval with Id {id} was not found.");
             }
-            return NotFound($"Approval with Id {id} was not found.");
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult DeleteApproval(long id)
         {
-            var approval = _approvalService.GetApproval(id);
-            if (approval != null)
+            try
             {
-                _approvalService.DeleteApproval(approval);
-                return Ok("Approval record is deleted sucessfully. ");
+                var approval = _approvalService.GetApproval(id);
+                if (approval != null)
+                {
+                    _approvalService.DeleteApproval(approval);
+                    return Ok("Approval record is deleted sucessfully. ");
+                }
+                return NotFound($"Approval with Id {id} was not found.");
             }
-            return NotFound($"Approval with Id {id} was not found.");
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPatch]
         [Route("{id}")]
         public IActionResult UpdateApproval(long id, ApprovalUpdateRequest approval)
         {
-            var currentApproval = _approvalService.GetApproval(id);
-            if (currentApproval != null)
+            try
             {
-                _approvalService.UpdateApproval(id, approval);
-                return Ok("Approval record is updated sucessfully. ");
+                var currentApproval = _approvalService.GetApproval(id);
+                if (currentApproval != null)
+                {
+                    _approvalService.UpdateApproval(id, approval);
+                    return Ok("Approval record is updated sucessfully. ");
+                }
+                return NotFound($"Approval with Id {id} was not found.");
             }
-            return NotFound($"Approval with Id {id} was not found.");
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPatch]
         [Route("/api/v1/timesheet/approvals")]
         public IActionResult UpdateApprovals(List<Approval> approvals)
         {
-           var updatedApproval =  _approvalService.UpdateApprovals(approvals);
+            try
+            {
+                var updatedApproval = _approvalService.UpdateApprovals(approvals);
                 return Ok(updatedApproval);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

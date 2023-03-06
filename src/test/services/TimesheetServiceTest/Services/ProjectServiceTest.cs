@@ -15,10 +15,10 @@ namespace TimesheetServiceTest.Services
             var project = new List<Project> { new Project() };
             var fakeProjectRepository = A.Fake<IProjectRepository>();
             A.CallTo(() => fakeProjectRepository.GetProjects()).Returns(project);
-
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
             var result = ProjectRepo.GetProjects();
+
             Assert.NotNull(result);
             Assert.Equal(project, result);
 
@@ -31,17 +31,19 @@ namespace TimesheetServiceTest.Services
             {
                 Description = "this is demo description",
                 Name = "demo",
-                ManagerId = 100,
-                OrganizationId = 1001,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                ManagerId = new Guid(),
+                OrganizationId = 123,
                 Status = Process_Statuses.pending
             };
             long id = 1001;
             var fakeProjectRepository = A.Fake<IProjectRepository>();
             A.CallTo(() => fakeProjectRepository.GetProject(id)).Returns(project);
-
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
             var result = ProjectRepo.GetProject(id);
+
             Assert.NotNull(result);
             Assert.Equal(result, project);
 
@@ -54,16 +56,18 @@ namespace TimesheetServiceTest.Services
             {
                 Description = "this is demo description",
                 Name = "demo",
-                ManagerId = 100,
-                OrganizationId = 1001,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                ManagerId = new Guid(),
+                OrganizationId = 123,
                 Status = Process_Statuses.pending
             };
             var fakeProjectRepository = A.Fake<IProjectRepository>();
-            A.CallTo(() => fakeProjectRepository.AddProject(project, project.OrganizationId)).Returns(project);
-
+            A.CallTo(() => fakeProjectRepository.AddProject(project, 123)).Returns(project);
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
             var result = ProjectRepo.AddProject(project, project.OrganizationId);
+
             Assert.NotNull(result);
             Assert.Equal(result, project);
 
@@ -76,32 +80,25 @@ namespace TimesheetServiceTest.Services
             long id = 1001;
             var fakeProjectRepository = A.Fake<IProjectRepository>();
             A.CallTo(() => fakeProjectRepository.DeleteProject(project));
-
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
             ProjectRepo.DeleteProject(project);
+
             Assert.True(true);
         }
 
         [Fact]
         public void ShouldReturnUpdateProject()
         {
-            ProjectUpdateRequest project = new ProjectUpdateRequest()
-            {
-                Description = "this is demo description",
-                Name = "demo",
-                ManagerId = 100,
-                Status = Process_Statuses.pending
-            };
+            ProjectUpdateRequest project = new ProjectUpdateRequest();
             long id = 1001;
             var fakeProjectRepository = A.Fake<IProjectRepository>();
             A.CallTo(() => fakeProjectRepository.UpdateProject(id, project)).Returns(new Project());
-
             var ProjectRepo = new ProjectService(fakeProjectRepository);
 
             var result = ProjectRepo.UpdateProject(id, project);
-            Assert.NotNull(result);
 
+            Assert.NotNull(result);
 
         }
 
