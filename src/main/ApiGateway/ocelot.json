@@ -12,10 +12,17 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/v1/project"
+      "DownstreamPathTemplate": "/api/v1/project",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Manager"
+      }
     },
     {
-   
+
       "UpstreamPathTemplate": "/api/v1/project/{projectId}",
       "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",
@@ -25,7 +32,11 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/v1/project/{projectId}"
+      "DownstreamPathTemplate": "/api/v1/project/{projectId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     },
 
     // Timesheet Web API
@@ -33,6 +44,11 @@
 
       "UpstreamPathTemplate": "/api/v1/timesheet",
       "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AddHeadersToRequest": {
+        "user_id": 12,
+        "TMS-ORGANIZATION-ID": "Claims[organization_id] > value[0] > |",
+        "TMS-PROJECT-ID": "Claims[project_id] > value[0] > |"
+      },
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -40,10 +56,14 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/v1/timesheet"
+      "DownstreamPathTemplate": "/api/v1/timesheet",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     },
     {
-   
+
       "UpstreamPathTemplate": "/api/v1/timesheet/{timesheetId}",
       "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",
@@ -53,12 +73,16 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/v1/timesheet/{timesheetId}"
+      "DownstreamPathTemplate": "/api/v1/timesheet/{timesheetId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     },
 
     // Approval Web API
     {
-    
+
       "UpstreamPathTemplate": "/api/v1/timesheet/approval",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamScheme": "http",
@@ -68,10 +92,14 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/v1/timesheet/approval"
+      "DownstreamPathTemplate": "/api/v1/timesheet/approval",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     },
     {
-   
+
       "UpstreamPathTemplate": "/api/v1/timesheet/approval/{approvalId}",
       "UpstreamHttpMethod": [ "Get", "Patch", "Delete" ],
       "DownstreamScheme": "http",
@@ -81,7 +109,11 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/v1/timesheet/approval/{approvalId}"
+      "DownstreamPathTemplate": "/api/v1/timesheet/approval/{approvalId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     }
   ],
   "GlobalConfiguration": {
