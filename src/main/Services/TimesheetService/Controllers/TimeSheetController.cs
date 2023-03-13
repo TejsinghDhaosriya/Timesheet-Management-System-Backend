@@ -19,7 +19,14 @@ namespace TimesheetService.Controllers
         [HttpGet]
         public IActionResult GetTimeSheets(Guid? userId, long? organizationId, DateTime? startDate, DateTime? endDate, bool withApproval)
         {
-            return Ok(_timeSheetService.GetTimeSheets(userId, organizationId, startDate, endDate, withApproval));
+            try
+            {
+                return Ok(_timeSheetService.GetTimeSheets(userId, organizationId, startDate, endDate, withApproval));
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
         [HttpGet]
         [Route("{id}")]

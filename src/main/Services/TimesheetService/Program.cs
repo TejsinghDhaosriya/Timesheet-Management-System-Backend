@@ -15,6 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Configuration.AddJsonFile("localsettings-timesheet.json", optional: true, reloadOnChange: true);
+builder.Services.AddSingleton(builder.Configuration);
 
 // Service to connect with postgresSql
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<TimeSheetDbContext>(opt =>
