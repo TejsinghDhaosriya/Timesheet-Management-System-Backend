@@ -31,6 +31,16 @@ services:
       dockerfile: ../src/main/Services/TimesheetService/Dockerfile
     networks:
      - backend
+  tenantservice:
+    container_name: tenant-service
+    image: ${DOCKER_REGISTRY-}tenantservice
+    build:
+      context: .
+      dockerfile: ../src/main/Services/TenantService/Dockerfile
+    ports: 
+       - 8003:80
+    networks:
+     - backend
   keycloak:
     container_name: keycloak-service
     image: quay.io/keycloak/keycloak:18.0.0
