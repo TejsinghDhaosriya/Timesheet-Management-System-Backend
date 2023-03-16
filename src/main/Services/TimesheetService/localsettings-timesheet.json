@@ -1,8 +1,0 @@
-{
-
-  "ConnectionStrings": {
-
-    "ProjectDbConnection": "User ID =postgres;Password=root;Server=localhost;Port=5432;Database=ProjectDB;Integrated Security=true;Pooling=true;"
-  }
-
-}

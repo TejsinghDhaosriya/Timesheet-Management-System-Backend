@@ -1,8 +1,0 @@
-{
-  "KeyCloakAuth": {
-    "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqjpWuE2D3Qp2U6v1CZYDFazKa36uNY8vylAOoiztAUARtf1CVZm8iM497PM+kBVlLkPOjiQtWwQ7zoLiqdn3ERiNfheQg8FL6DVSuz6ud1BciNADhhN+du6l2OBnXOV8m3sDBLg6RFdXW2od4TQy2z3ekB9MhF1zfibF86g6ZVXkQ9gAq8A0qqIVj2T+IaIJVhyHaap5AdoJzydlkvXySmoBQKNp/F/AU87U6sT8iRC/atvKAGKqQUIhJRvmOgW7pdjifu90Mn8iFVtOvXAeEK9vo/H4zlwz+pUXDnY8ZmYAdX1t/SWpQ/IEznaER8mmzXPZ0fzitb9tKLBaUVWnHwIDAQAB",
-    "isStaging": true,
-    "clientName": "TMS-Client",
-    "issuer": "https://143.110.248.171:8443/realms/Augmento"
-  }
-}
