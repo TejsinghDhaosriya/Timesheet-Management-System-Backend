@@ -12,4 +12,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+  tenantservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
 
